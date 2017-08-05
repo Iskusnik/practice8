@@ -47,6 +47,9 @@ namespace practice8
 
             return false;
         }
-
+        public override string ToString()
+        {
+            return (A + B).ToString();
+        }
     }
 }

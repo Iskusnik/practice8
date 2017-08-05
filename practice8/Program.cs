@@ -18,8 +18,41 @@ namespace practice8
      /// <param name="args"></param>
         static void Main(string[] args)
         {
-            Console.WriteLine("Ввод количества рёбер");
-            int N = int.Parse(Console.ReadLine());
+            Console.WriteLine("Ввод количества вершин");
+            int M = int.Parse(Console.ReadLine());
+            
+            int N;
+            do
+            {
+                Console.WriteLine("Ввод количества рёбер");
+                N = int.Parse(Console.ReadLine());
+            } while (N > (M - 1) * M / 2 + M);
+
+            Line[] lines = new Line[N];
+
+            Console.WriteLine("0 - Ручной ввод");
+            Console.WriteLine("Не 0 - Генерация");
+            int choose = int.Parse(Console.ReadLine());
+
+            if (choose == 0)
+            {
+                for (int i = 0; i < N; i++)
+                {
+                    Console.Clear();
+
+                    Console.Write("Рёбра:");
+                    for (int j = 0; j < i; j++)
+                        Console.Write("{0}  ", lines[i]);
+                    Console.WriteLine();
+
+                    Console.WriteLine("Формат: AB");
+                    Console.WriteLine("Ввод ребра {0}", i + 1);
+                    string temp = Console.ReadLine();
+                    lines[i] = new Line(temp[0].ToString(), temp[1].ToString());
+                }
+            }
+            else
+                lines = TestGen.gen(N, M);
         }
     }
 }
