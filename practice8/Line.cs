@@ -52,4 +52,17 @@ namespace practice8
             return (A + B).ToString();
         }
     }
+    class Node
+    {
+        public string NodeName { get; set; }
+        public int Connections { get; set; }
+        public Node[] ConnectionsInfo { get; set; }
+
+        public Node(string name)
+        {
+            NodeName = name;
+            Connections = 0;
+            ConnectionsInfo = new Node[1000];
+        }
+    }
 }
