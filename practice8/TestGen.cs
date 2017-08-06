@@ -12,14 +12,18 @@ namespace practice8
 
     class TestGen
     {
-        static Line[] graph = new Line[10001];
+        static Line[] graph = new Line[100001];
         static Line[] lines;
         static Random random = new Random();
         static public Line newLine(int M)
         {
             Line line;
             do
-                line = new Line(char.ConvertFromUtf32(random.Next(0, M + 1) + 'A'), char.ConvertFromUtf32(random.Next(0, M + 1) + 'A'));
+            {
+                string a = char.ConvertFromUtf32(random.Next(0, M) + 'A');
+                string b = char.ConvertFromUtf32(random.Next(0, M) + 'A');
+                line = new Line(a, b);
+            }
             while (graph[line.GetHashCode() % 10001] != null); //Надо убрать генерацию двух одинаковых рёбер
 
             graph[line.GetHashCode() % 10001] = line;

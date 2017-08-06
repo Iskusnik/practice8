@@ -13,7 +13,7 @@ namespace practice8
         public string B { get; set; }
         public Line(string a, string b)
         {
-            if (CompareStrings(A, B))
+            if (CompareStrings(a, b))
             {
                 A = a;
                 B = b;
@@ -26,7 +26,11 @@ namespace practice8
         }
         public override int GetHashCode()
         {
-            return ((A + B).GetHashCode());
+            if ((A + B).GetHashCode() < 0)
+
+                return (-(A + B).GetHashCode());
+            else
+                return ((A + B).GetHashCode());
         }
         public override bool Equals(object obj)
         {
@@ -57,12 +61,27 @@ namespace practice8
         public string NodeName { get; set; }
         public int Connections { get; set; }
         public Node[] ConnectionsInfo { get; set; }
-
+        public int Visited { get; set; }
         public Node(string name)
         {
             NodeName = name;
             Connections = 0;
             ConnectionsInfo = new Node[1000];
+            Visited = 0;
+        }
+        public override string ToString()
+        {
+            return NodeName;
+        }
+    }
+    class Click
+    {
+        public Node Info { get; set; }
+        public Click Next { get; set; }
+        public Click (Node info)
+        {
+            Info = info;
+            Next = null;
         }
     }
 }
